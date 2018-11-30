@@ -1,0 +1,23 @@
+{% extends "base.html" %}
+{% import "bootstrap/wtf.html" as wtf %}
+
+{% block page_content %}
+<div class="page-header">
+    <h2>Ingrese un producto para ver quienes lo compraron.</h2>
+    {{ wtf.quick_form(form) }}
+</div>
+
+{% if searchProd %}
+<h3>Clientes que compraron el producto:</h3>
+    {% if lista %}
+        <ul>
+            {% for product in lista %}
+            <li><a href="/clientesporproducto/{{ product }}">{{ product }}</a></li>
+            {% endfor %}
+        </ul>
+    {% endif %}
+    {% if not lista %}
+        <p>No hay clientes que coincidan con su busqueda.</p>
+    {% endif %}
+{% endif %}
+{% endblock %}
